@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './components/Header';
-import Content from './components/Content2';
+import Content from './components/Consulta_usu';
 import Footer from './components/Footer';
 
 const App = () => {
