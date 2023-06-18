@@ -13,7 +13,7 @@ const Content2 = () => {
                             <div className='card card-primary'>
                                 <div className='card-header'>
                                     <h4 className='card-title'>
-                                        <i className="fas fa-user-circle mr-2"></i>
+                                        <i className="fas  mr-2"></i>
                                         Editar E/S
                                     </h4>
                                 </div>

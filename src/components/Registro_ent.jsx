@@ -12,7 +12,7 @@ const Registro_ent = () => {
                             <div className='card bg-dark text-white'>
                                 <h4 className='card-text'>
                                     <i className="fas fa-user-circle mr-2"></i>
-                                        Registro de Usuarios
+                                        Registro de entradas y salidas
                                 </h4>
                             </div>
                             <div className='card-body'>

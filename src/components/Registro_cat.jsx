@@ -32,7 +32,7 @@ const Reistro_cat = () => {
                                 </div>
                             </div>
                             <div className='card-footer'>
-                                <button className='btn btn-dark'>Login</button>
+                                <button className='btn btn-dark'>Registrar</button>
                             </div>
                         </div>
                     </div>

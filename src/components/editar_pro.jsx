@@ -13,7 +13,7 @@ const Content2 = () => {
                             <div className='card card-primary'>
                                 <div className='card-header'>
                                     <h4 className='card-title'>
-                                        <i className="fas fa-user-circle mr-2"></i>
+                                        <i className="fas mr-2"></i>
                                         Editar producto
                                     </h4>
                                 </div>
@@ -23,19 +23,15 @@ const Content2 = () => {
                                         <input type="text" name="" id="" className='form-control' placeholder="Escriba aquí" maxLength={50} />
                                     </div>
                                     <div className='form-group'>
-                                        <label>Categoria</label>
-                                        <input type="text" name="" id="" className='form-control' placeholder="Escriba aquí" />
-                                    </div>
-                                    <div className='form-group'>
-                                        <label>Precio</label>
-                                        <input type="number" name="" id="" className='form-control' placeholder="0" step="0.1" max="10" min="7" />
-                                    </div>
-                                    <div className='form-group'>
                                         <label>Marca</label>
                                         <input type="text" name="" id="" className='form-control' placeholder="Escriba aquí" />
                                     </div>
                                     <div className='form-group'>
-                                        <label>Codigo</label>
+                                        <label>Categoria</label>
+                                        <input type="number" name="" id="" className='form-control' placeholder="0" step="0.1" max="10" min="7" />
+                                    </div>
+                                    <div className='form-group'>
+                                        <label>Foto</label>
                                         <input type="text" name="" id="" className='form-control' placeholder="Escriba aquí" />
                                     </div>
                                     <div className='form-group'>
@@ -47,18 +43,7 @@ const Content2 = () => {
                                         <input type="text" name="" id="" className='form-control' placeholder="Escriba aquí" />
                                     </div>
                                     <div className='form-group'>
-                                        <label>Longitud</label>
-                                        <input type="text" name="" id="" className='form-control' placeholder="Escriba aquí" />
-                                    </div> <div className='form-group'>
-                                        <label>Profundidad</label>
-                                        <input type="text" name="" id="" className='form-control' placeholder="Escriba aquí" />
-                                    </div>
-                                    <div className='form-group'>
-                                        <label>Largo</label>
-                                        <input type="text" name="" id="" className='form-control' placeholder="Escriba aquí" />
-                                    </div>
-                                    <div className='form-group'>
-                                        <label>ancho</label>
+                                        <label>Precio</label>
                                         <input type="text" name="" id="" className='form-control' placeholder="Escriba aquí" />
                                     </div>
                                     <div className='form-group'>

@@ -32,7 +32,7 @@ const Content = () => {
                                               <th scope="col">Nombre</th>
                                               <th scope="col">Apellido paterno</th>
                                               <th scope="col">Apellido materno</th>
-                                              <th scope="col">Puesto/rol</th>
+                                              <th scope="col">Rol</th>
                                               <th scope="col">Foto</th>
                                               <th scope="col">Usuario</th>
                                               <th scope="col">Password</th>

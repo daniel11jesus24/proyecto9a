@@ -7,14 +7,14 @@ const Content = () => {
                 <div className="container">
                     <div className="row mb-2">
                     <div className="col-sm-6">
-                        <h1 className="m-0">Consulta de entradas y salidas</h1>
+                        <h1 className="m-0">Consulta de Productos </h1>
                     </div>
                     
                     </div>
                 </div>
             </div>
             <div className="content">
-                <div className="container">
+                <div className="container ">
                     
                     <div className='row'>
                         <div className='col-xs-12  col-lg-12'>
@@ -22,18 +22,20 @@ const Content = () => {
                                 <div className='card-header'>
                                     <h4 className='card-title'>
                                         <i className="fas mr-2"></i>
-                                        Tabla de E/S
+                                        Tabla de categorias
                                     </h4>
                                 </div>
                                   <div > 
                                       <table id="tablaconsultausu" className='table text-center'>
                                           <tr>
-                                              <th scope="col">Fecha de entrada</th>
-                                              <th scope="col">Hora de entrada</th>
-                                              <th scope="col">Fecha de salida</th>
-                                              <th scope="col">Hora de salida</th>
-                                              <th scope="col">IdProducto</th>
-                                              <th className='col'>Acciones</th>            
+                                              <th scope="col">Idcategoria</th>
+                                              <th scope="col">Tipo</th>
+                                              <th scope="col">Nombre</th>
+                                              <th scope="col">Status</th>
+                                              <th scope="col">Fecha de alta</th>
+                                              <th scope="col">Personal</th>
+                                              <th scope="col">Acciones</th>
+                                              
                                           </tr>
                                           <tr>
                                               <th scope="col"></th>
@@ -41,12 +43,13 @@ const Content = () => {
                                               <th scope="col"></th>
                                               <th scope="col"></th>
                                               <th scope="col"></th>
-                                              <th className='col'>
-                                                  <button className='btn btn-sm bg-blue col-lg-4 offset-md-1'>Editar</button>
-                                                  <button className='btn btn-sm bg-danger col-lg-4 offset-md-1 '>Borrar</button>
-                                              </th> 
+                                              <th scope="col"></th>
+                                              <th scope="col">
+                                                  <button className='btn btn-sm bg-blue  col-lg-4 offset-md-1'>Editar</button>
+                                                  <button className='btn btn-sm bg-danger col-lg-4 offset-md-1'>Borrar</button></th>
                                           </tr>
                                           
+
                                       </table>
                                   </div>
                                 

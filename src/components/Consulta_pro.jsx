@@ -28,15 +28,32 @@ const Content = () => {
                                   <div > 
                                       <table id="tablaconsultausu" className='table text-center'>
                                           <tr>
-                                              <th scope="col">Idcategoria</th>
+                                              <th scope="col">Idproducto</th>
                                               <th scope="col">Nombre</th>
-                                              <th scope="col">Status</th>
-                                              <th scope="col">Personal</th>
-                                              <th className='col'>
-                                                  <button className='btn btn-sm bg-blue'>Editar</button>
-                                                  <button className='btn btn-sm bg-danger '>Borrar</button>
+                                              <th scope="col">Marca</th>
+                                              <th scope="col">Categoria</th>
+                                              <th scope="col">Foto</th>
+                                              <th scope="col">Piezas</th>
+                                              <th scope="col">Color</th>
+                                              <th scope="col">Precio</th>
+                                              <th scope="col">Fecha de registro</th>
+                                              <th scope='col'>Acciones</th>
+                                          </tr>
+                                          <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th> </th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th className='col'>
+                                                  <button className='btn btn-sm bg-blue col-lg-4 offset-md-1'>Editar</button>
+                                                  <button className='btn btn-sm bg-danger col-lg-4 offset-md-1'>Borrar</button>
                                                 </th>
-                                             
+                                              
                                           </tr>
                                           
 
