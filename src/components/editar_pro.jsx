@@ -28,6 +28,14 @@ const editar_pro = () => {
         });
     };
 
+    /// CODIGO PARA CARGAR IMAGEN
+    const handleFileInputChange = (event) => {
+        setProductData({
+          ...productData,
+          Foto: event.target.files[0],
+        });
+      };
+      // TERMINA CODIGO
     const handleSubmit = async () => {
         try {
             await fetch(`http://localhost/dwi-9a/index.php/Api/Productos/${searchId}`, {
@@ -83,18 +91,17 @@ const editar_pro = () => {
                                 onChange={handleInputChange}
                             />
                         </label>
-                        
                         <label>
                             Foto:
-                        
                             <input
-                                type='text'
+                                type='file'
                                 accept="image/*"
                                 name="Foto"
                                 value={formData.Foto || ''}
-                                onChange={handleInputChange}
+                                onChange={handleFileInputChange}
                             />
                         </label>
+
                         <label>
                             Piezas:
                             <input

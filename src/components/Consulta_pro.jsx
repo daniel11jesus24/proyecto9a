@@ -71,7 +71,10 @@ function Consulta_pro() {
                                                     <th>IdCategoria</th>
                                                     <th>Marca</th>
                                                     <th>Nombre</th>
-                                                    <th>Foto</th>
+                                                    <th>
+                                                        {/* Renderizar la imagen si existe la URL */}
+                                                        {producto.Foto && <img src={producto.Foto} alt={producto.Nombre} width="50"/>}
+                                                    </th>
                                                     <th>Piezas</th>
                                                     <th>Color</th>
                                                     <th>Precio</th>
