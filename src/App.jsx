@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 
 import Addform from './components/Addform';
@@ -8,18 +8,18 @@ import Consultaent from './components/Addcon_ent';
 import Consultapro from './components/Addcon_pro';
 import Consultausu from './components/Addcon_usu';
 
-import Editarcat from './components/editar_cat';
-import Editarent from './components/editar_ent';
-import Editarpro from './components/editar_pro';
-import Editarusu from './components/Editar_usu';
+import Editarcat from './components/Addedit_cat';
+import Editarent from './components/Addedit_ent';
+import Editarpro from './components/Addedit_pro';
+import Editarusu from './components/Addedit_usu';
 
 import Graficaent from './components/Grafica_ent';
 import Informeent from './components/Informe_ent';
 
-import Registrocat from './components/Registro_cat';
-import Registroent from './components/Registro_ent';
-import Registropro from './components/Registro_pro';
-import Registrousu from './components/Registro_usu';
+import Registrocat from './components/Addreg_cat';
+import Registroent from './components/Addreg_ent';
+import Registropro from './components/Addreg_pro';
+import Registrousu from './components/Addreg_usu';
 
 import Login from './components/Login';
 
