@@ -5,6 +5,9 @@ const Registro_ent = () => {
     const [Fecha_entrada, setFecha_entrada] = useState();
     const [Fecha_salida, setFecha_salida] = useState();
     const [IdProducto, setIdProducto] = useState();
+    const [message, setMessage] = useState('');
+
+    
     const handleAdd =()=>{
         console.log(Fecha_entrada, Fecha_salida, IdProducto)
 
@@ -25,20 +28,29 @@ const Registro_ent = () => {
 
         fetch("http://localhost/dwi-9a/index.php/Api/Entrada_salida/", requestOptions)
             .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
+            .then(result => {
+                console.log(result);
+                setTimeout(() => {
+                    setMessage('Registro exitoso');
+                }, 1000);})
+            .catch(error => {
+                console.log('error', error);
+                setTimeout(() => {
+                    setMessage('Error');
+                }, 1000); });
     }
   return (
     <>
-    <center>
-        <div className="content-header">
-            <div className="content">
-                <div className="container">
-                    <div className='col-xs-12 col-md-12 col-lg-7'>
-                        <div className='card card-primary'>
+        <div className="content-header ">
+              <div className="content">
+                <div className="container ">
+                    <div className="row  justify-content-center">
+                    <div className='col-xs-10 col-md-10 col-lg-7 '>
+                          
+                            <div className='card card-primary '>
                             <div className='card bg-dark text-white'>
                                 <h3 className='card-text'>
-                                    <i className="fas fa-user-circle mr-2"></i>
+                                    
                                         Registro de entradas y salidas
                                 </h3>
                             </div>
@@ -68,7 +80,7 @@ const Registro_ent = () => {
                                                   className='form-control'/>
                                     </div>
                                 </div>
-                                      <div className='row'>
+                                      <div className='row '>
                                           <div className='col-xs-6 col-md-8 col-lg-4'><br />
                                               <h6>ID Producto</h6>
                                           </div>
@@ -80,15 +92,18 @@ const Registro_ent = () => {
                                           </div>
                                       </div>
                             </div>
-                            <div className='card-footer'>
-                                <button className='btn btn-dark' onClick={()=>handleAdd()}>Registrar</button>
+                              <div className='row  justify-content-center'>
+                                <button className='btn btn-dark ' onClick={()=>handleAdd()}>Registrar</button>
+                                     
                             </div>
+                                  {message && <div className="row  justify-content-center">{message}</div>}
                         </div>
+                          </div>
+                        
                     </div>
                 </div>
             </div>
         </div>
-    </center>
     </>
   )
 }

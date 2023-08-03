@@ -4,7 +4,7 @@ function Consulta_ent() {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    //operaciones para consultar todo
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -23,6 +23,23 @@ function Consulta_ent() {
 
         fetchData();
     }, []);
+    //operacion para eliminar un campo
+    const handleDelete = async (idEntrada) => {
+        try {
+            const response = await fetch(`http://localhost/dwi-9a/index.php/Api/Entrada_salida/${idEntrada}`, {
+                method: 'DELETE', redirect: 'follow'
+            });
+            console.log(idEntrada);
+            if (!response.ok) {
+                throw new Error('La solicitud de eliminación no pudo ser completada.');
+            }
+
+            // Eliminar el registro eliminado del estado
+            setData((prevData) => prevData.filter((item) => item.IdEntrada !== idEntrada));
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
 
     if (isLoading) {
         return <div>Cargando...</div>;
@@ -41,7 +58,7 @@ function Consulta_ent() {
                 <div className="content">
                     <div className="container">
 
-                        <div className='row'>
+                        <div className='row justify-content-center'>
                             <div className='col-xs-12  col-lg-12'>
                                 <div className='card card-primary'>
                                     <div className='card-header'>
@@ -69,8 +86,9 @@ function Consulta_ent() {
                                                         <td >{item.Fecha_salida}</td>
                                                         <td >{item.IdProducto}</td>
                                                         <td >
+                                                            
                                                             <button className='btn btn-sm bg-blue col-lg-4 offset-md-1'>Editar</button>
-                                                            <button className='btn btn-sm bg-danger col-lg-4 offset-md-1 '>Borrar</button>
+                                                            <button className='btn btn-sm bg-danger col-lg-4 offset-md-1' onClick={() => handleDelete(item.IdEntrada)}>Borrar</button>
                                                         </td>
                                                     </tr>
                                                 ))}

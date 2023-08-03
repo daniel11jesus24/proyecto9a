@@ -1,6 +1,6 @@
 
 import Header from './Header';
-import Content from './Consulta_cat';
+import Content from './editar_cat';
 import Footer from './Footer';
 
 const Addform = () => {

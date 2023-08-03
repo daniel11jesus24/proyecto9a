@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const Login = () => {
   return (
@@ -12,7 +12,7 @@ const Login = () => {
                             <div className='card bg-dark text-white'>
                                 <h4 className='card-text'>
                                     <i className="fas fa-user-circle mr-2"></i>
-                                        Agregar alumno
+                                        Iniciar sesion
                                 </h4>
                             </div>
                             <div className='card-body'>

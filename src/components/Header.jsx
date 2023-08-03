@@ -64,7 +64,7 @@ const Header = () => {
                               </div>
                         </li>
                 </ul>
-                      <ul className="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                     <ul className="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto ">
 
                           <li className="nav-item dropdown">
                               <Link className="nav-link" data-toggle="dropdown" to="#">
@@ -78,7 +78,7 @@ const Header = () => {
                                   <Link to="/log" className="dropdown-item dropdown-footer">Cerrar sesion</Link>
                               </div>
                           </li>
-                      </ul>
+                      </ul> 
             </div>
 
             

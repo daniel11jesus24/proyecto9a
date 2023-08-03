@@ -1,64 +1,94 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Content2 = () => {
-  return (
-    <>
-      <div className="content-wrapper">
-           
-            <div className="content">
-                <div className="container">
-                    
-                    <div className='row'>
-                        <div className='col-12'>
-                            <div className='card card-primary'>
-                                <div className='card-header'>
-                                    <h4 className='card-title'>
-                                        <i className="fas  mr-2"></i>
-                                        Editar E/S
-                                    </h4>
-                                </div>
-                                <div className='card-body'>
-                                    <div className='form-group'>
-                                        <label>Fecha de entrada</label>
-                                        <input type="text" name="" id="" className='form-control' placeholder="Escriba aquí" maxLength={50} />
-                                    </div>
-                                    <div className='form-group'>
-                                        <label>Hora de entrada</label>
-                                        <input type="text" name="" id="" className='form-control' placeholder="Escriba aquí" />
-                                    </div>
-                                    <div className='form-group'>
-                                        <label>Fecha de salida</label>
-                                        <input type="txt" name="" id="" className='form-control' placeholder="Escriba aquí" step="0.1" max="10" min="7" />
-                                    </div>
-                                    <div className='form-group'>
-                                        <label>Hora de salida</label>
-                                        <input type="text" name="" id="" className='form-control' placeholder="Escriba aquí" />
-                                    </div>
-                                    <div className='form-group'>
-                                        <label>IdProducto</label>
-                                        <input type="text" name="" id="" className='form-control' placeholder="Escriba aquí" />
-                                    </div>
-                                
-                                  
-                                    
-                                   
-                                    
-                                </div>
-                                <div className='card-footer'>
-                                    <button className='btn btn-orange bg-orange btn-lg float-right'>Editar</button>
-                                    <button className='btn btn-secondary'>Cancelar</button>
-                                </div>
-                            </div>
-                        </div>
 
-                       
-                    </div>
-                    
-                </div>
+const editar_ent = () => {
+    const [data, setData] = useState({});
+    const [formData, setFormData] = useState({});
+    const [searchId, setSearchId] = useState('');
+    const [message, setMessage] = useState('');
+
+    const handleSearch = async () => {
+        try {
+            const response = await fetch(`http://localhost/dwi-9a/index.php/Api/Entrada_salida/${searchId}`);
+            const data = await response.json();
+            setData(data);
+            setFormData(data);
+        } catch (error) {
+            setTimeout(() => {
+                setMessage('Error');
+            }, 1000);
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    const handleInputChange = (event) => {
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.value,
+        });
+    };
+
+    const handleSubmit = async () => {
+        try {
+            await fetch(`http://localhost/dwi-9a/index.php/Api/Entrada_salida/${searchId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            setTimeout(() => {
+                setMessage('Actualizacion exitosa');
+            }, 1000);
+        } catch (error) {
+            console.error('Error updating data:', error);
+        }
+    };
+
+    return (
+        <div className="row  justify-content-center">
+            <div>
+                <input type="num" value={searchId} onChange={(e) => setSearchId(e.target.value)} />
+                <button onClick={handleSearch}>Id de la Entrada a editar</button>
+            </div>
+            {message && <div>{message}</div>}
+
+            <div>
+                {data.IdEntrada && (
+                    <form>
+                        <label>
+                            Fecha Entrada:
+                            <input
+                                type="datetime-local"
+                                name="Fecha_entrada"
+                                value={formData.Fecha_entrada || ''}
+                                onChange={handleInputChange}
+                            />
+                        </label>
+                        <label>
+                            Fecha Salida:
+                            <input
+                                type="datetime-local"
+                                name="Fecha_salida"
+                                value={formData.Fecha_salida || ''}
+                                onChange={handleInputChange}
+                            />
+                        </label>
+                        <label>
+                            IdProducto:
+                            <input
+                                type="num"
+                                name="IdProducto"
+                                value={formData.IdProducto || ''}
+                                onChange={handleInputChange}
+                            />
+                        </label>
+                        <button onClick={handleSubmit}>Guardar Cambios</button>
+
+                    </form>
+                )}
             </div>
         </div>
-    </>
-  )
-}
-
-export default Content2;
+    );
+};
+export default editar_ent;
