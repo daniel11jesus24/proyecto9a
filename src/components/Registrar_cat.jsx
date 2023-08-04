@@ -73,7 +73,7 @@ const Registro_cat = () => {
                                               <h6>Tipo</h6>
                                           </div>
                                           <div className='col-xs-6 col-md-8 col-lg-8'><br />
-                                              <input type='number' name='' id=''
+                                              <input type='text' name='' id=''
                                                   value={Tipo}
                                                   onChange={event => setTipo(event.target.value)}
                                                   min="0" className='form-control' placeholder='Introduzca...' />
