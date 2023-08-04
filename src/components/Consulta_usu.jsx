@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { Link } from 'react-router-dom';
 function Consulta_usu() {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -79,7 +79,9 @@ function Consulta_usu() {
                                                         <td >{item.Fecha_registro}</td>
                                                         <td >{item.Email}</td>
                                                         <td >
-                                                            <button className='btn btn-sm bg-blue col-lg-4 offset-md-1'>Editar</button>
+                                                            <Link to='/ediusu'>
+                                                                <button className='btn btn-sm bg-blue col-lg-4 offset-md-1'>Editar</button>
+                                                            </Link>
                                                             <button className='btn btn-sm bg-danger col-lg-4 offset-md-1 '>Borrar</button>
                                                         </td>
                                                     </tr>
