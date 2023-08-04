@@ -13,8 +13,6 @@ import Editarent from './components/Addedit_ent';
 import Editarpro from './components/Addedit_pro';
 import Editarusu from './components/Addedit_usu';
 
-import Graficaent from './components/Grafica_ent';
-import Informeent from './components/Informe_ent';
 
 import Registrocat from './components/Addreg_cat';
 import Registroent from './components/Addreg_ent';
@@ -44,8 +42,6 @@ const App = () => {
         <Route path='/edipro' element={<Editarpro />} />
         <Route path='/ediusu' element={<Editarusu />} />
 
-        <Route path='/graent' element={<Graficaent />} />
-        <Route path='/infent' element={<Informeent />} />
 
         <Route path='/regcat' element={<Registrocat />} />
         <Route path='/regent' element={<Registroent />} />
