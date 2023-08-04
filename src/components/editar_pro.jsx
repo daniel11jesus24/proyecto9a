@@ -29,11 +29,18 @@ const editar_pro = () => {
     };
 
     /// CODIGO PARA CARGAR IMAGEN
-    const handleFileInputChange = (event) => {
-        setProductData({
-          ...productData,
-          Foto: event.target.files[0],
-        });
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setFormData((prevData) => ({
+            ...prevData,
+            Foto: reader.result,
+          }));
+        };
+        if (file) {
+          reader.readAsDataURL(file);
+        }
       };
       // TERMINA CODIGO
     const handleSubmit = async () => {
@@ -93,15 +100,9 @@ const editar_pro = () => {
                         </label>
                         <label>
                             Foto:
-                            <input
-                                type='file'
-                                accept="image/*"
-                                name="Foto"
-                                value={formData.Foto || ''}
-                                onChange={handleFileInputChange}
-                            />
+                            <input type="file" accept="image/*" onChange={handleFileChange} />
+                            {formData.Foto && <img src={formData.Foto} alt="Producto" />}
                         </label>
-
                         <label>
                             Piezas:
                             <input
