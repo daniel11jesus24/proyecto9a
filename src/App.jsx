@@ -13,7 +13,6 @@ import Editarent from './components/Addedit_ent';
 import Editarpro from './components/Addedit_pro';
 import Editarusu from './components/Addedit_usu';
 
-
 import Registrocat from './components/Addreg_cat';
 import Registroent from './components/Addreg_ent';
 import Registropro from './components/Addreg_pro';
