@@ -1,95 +1,57 @@
-import { useState } from "react";
+import React from 'react';
 
-const Editar_cat = () => {
-    const [IdCategoria, setIdCategoria] = useState();
-    const [Tipo, setTipo] = useState();
-    const [Fecha_Alta, setFechaAlta] = useState();
-    const [message, setMessage] = useState('');
-
-
-    const handleAdd = async()=>{
-        try {
-            const response = await fetch(`http://localhost/dwi-9a/index.php/Api/Categoria/${searchId}`);
-            const data = await response.json();
-            setData(data);
-            setFormData(data);
-        } catch (error) {
-            setTimeout(() => {
-                setMessage('Error');
-            }, 1000);
-            console.error('Error fetching data:', error);
-        }
-    };
-
-    const handleInputChange = (event) => {
-        setFormData({
-            ...formData,
-            [event.target.name]: event.target.value,
-        });
-    };
-
-    const handleSubmit = async () => {
-        try {
-            await fetch(`http://localhost/dwi-9a/index.php/Api/Categoria/${searchId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-            setTimeout(() => {
-                setMessage('Actualizacion exitosa');
-            }, 1000);
-        } catch (error) {
-            console.error('Error updating data:', error);
-        }
-    }; 
-    
+const Content2 = () => {
   return (
-    <div className="row  justify-content-center">
-    <div>
-        <input type="num" value={searchId} onChange={(e) => setSearchId(e.target.value)} />
-        <button onClick={handleSearch}>Id de la Categoria a editar</button>
-    </div>
-    {message && <div>{message}</div>}
+    <>
+      <div className="content-wrapper">
+           
+            <div className="content">
+                <div className="container">
+                    
+                    <div className='row'>
+                        <div className='col-12'>
+                            <div className='card card-primary'>
+                                <div className='card-header'>
+                                    <h4 className='card-title'>
+                                        <i className="fas mr-2"></i>
+                                        Editar Categoria
+                                    </h4>
+                                </div>
+                                <div className='card-body'>
+                                    <div className='form-group'>
+                                        <label>Nombre</label>
+                                        <input type="text" name="" id="" className='form-control' placeholder="Escriba aquí" maxLength={50} />
+                                    </div>
+                                    <div className='form-group'>
+                                        <label>Status</label>
+                                        <input type="text" name="" id="" className='form-control' placeholder="Escriba aquí" />
+                                    </div>
+                                    <div className='form-group'>
+                                        <label>Personal</label>
+                                        <input type="number" name="" id="" className='form-control' placeholder="0" step="0.1" max="10" min="7" />
+                                    </div>
+                                   
+                                
+                                  
+                                    
+                                   
+                                    
+                                </div>
+                                <div className='card-footer'>
+                                    <button className='btn btn-orange bg-orange btn-lg float-right'>Editar</button>
+                                    <button className='btn btn-secondary'>Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
 
-    <div>
-        {data.IdCategoria && (
-            <form>
-                <label>
-                    IdCategoria:
-                    <input
-                        type="num"
-                        name="IdCategoria"
-                        value={formData.IdCategoria || ''}
-                        onChange={handleInputChange}
-                    />
-                </label>
-                <label>
-                        Tipo:
-                    <input
-                        type="text"
-                        name="Tipo"
-                        value={formData.Tipo || ''}
-                        onChange={handleInputChange}
-                    />
-                </label>
-                <label>
-                            Fecha Alta:
-                            <input
-                                type="datetime-local"
-                                name="Fecha_Alta"
-                                value={formData.Fecha_Alta || ''}
-                                onChange={handleInputChange}
-                            />
-                        </label>
-                <button onClick={handleSubmit}>Guardar Cambios</button>
+                       
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </>
+  )
+}
 
-            </form>
-        )}
-    </div>
-</div>
-);
-};
-export default Editar_cat;
-    
+export default Content2;
