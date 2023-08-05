@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom'; 
+
 
 function Consulta_ent() {
     const [data, setData] = useState([]);
+    const [datap, setDatap] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
+
     //operaciones para consultar todo
     useEffect(() => {
         const fetchData = async () => {
@@ -35,7 +39,7 @@ function Consulta_ent() {
             }
 
             // Eliminar el registro eliminado del estado
-            setData((prevData) => prevData.filter((item) => item.IdEntrada !== idEntrada));
+            setData((prevData) => prevData.filter((entradas) => entradas.IdEntrada !== idEntrada));
         } catch (error) {
             console.error(error.message);
         }
@@ -49,46 +53,47 @@ function Consulta_ent() {
         return <div>Error: {error}</div>;
     }
 
+
     return (
         <>
-            <div className="content-wrapper">
+            <div className="content-wrapper ">
                 <div className="content-header">
-                    
                 </div>
-                <div className="content">
-                    <div className="container">
-
-                        <div className='row justify-content-center'>
-                            <div className='col-xs-12  col-lg-12'>
+                <div className="content ">
+                    <div className="container ">
+                        <div className='row '>
+                            <div className=' col-xs-12 col-sm-12 col-md-11 col-lg-11'>
                                 <div className='card card-primary'>
                                     <div className='card-header'>
                                         <h4 className='card-title'>
-                                            <i className="fas mr-2"></i>
                                             Consulta de Entradas/Salidas
+
                                         </h4>
                                     </div>
                                     <div >
-                                        <table className='table text-center'>
+
+                                        <table className="table text-center" >
                                             <thead>
                                                 <tr>
                                                     <th >ID Entrada</th>
                                                     <th >Fecha de Entrada</th>
                                                     <th >Fecha de Salida</th>
-                                                    <th >ID Producto</th>
-                                                    <th >Acciones</th>
+                                                    <th >ID Producto</th> 
+                                                    <th className="col-5">Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {data.map((item) => (
-                                                    <tr key={item.IdEntrada}>
-                                                        <td>{item.IdEntrada}</td>
-                                                        <td >{item.Fecha_entrada}</td>
-                                                        <td >{item.Fecha_salida}</td>
-                                                        <td >{item.IdProducto}</td>
-                                                        <td >
-                                                            
-                                                            <button className='btn btn-sm bg-blue col-lg-4 offset-md-1'>Editar</button>
-                                                            <button className='btn btn-sm bg-danger col-lg-4 offset-md-1' onClick={() => handleDelete(item.IdEntrada)}>Borrar</button>
+                                                {data.map((entradas) => (
+                                                    <tr key={entradas.IdEntrada}>
+                                                        <td>{entradas.IdEntrada}</td>
+                                                        <td >{entradas.Fecha_entrada}</td>
+                                                        <td >{entradas.Fecha_salida}</td>
+                                                        <td >{entradas.IdProducto}</td>
+                                                         <td >
+                                                            <Link to='/edient'>
+                                                                <button className='btn btn-sm bg-blue col-lg-4 offset-md-1'>Editar</button>
+                                                            </Link>
+                                                            <button className='btn btn-sm bg-danger col-lg-5 offset-md-1' onClick={() => handleDelete(entradas.IdEntrada)}>Borrar</button>
                                                         </td>
                                                     </tr>
                                                 ))}
@@ -96,9 +101,8 @@ function Consulta_ent() {
                                         </table>
                                     </div>
 
-                                </div>
+                                </div> 
                             </div>
-
 
                         </div>
 
@@ -106,7 +110,7 @@ function Consulta_ent() {
                 </div>
             </div>
 
-       </>
+        </>
     );
 };
 

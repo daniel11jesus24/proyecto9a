@@ -46,49 +46,66 @@ const editar_ent = () => {
     };
 
     return (
-        <div className="row  justify-content-center">
-            <div>
-                <input type="num" value={searchId} onChange={(e) => setSearchId(e.target.value)} />
-                <button onClick={handleSearch}>Id de la Entrada a editar</button>
-            </div>
-            {message && <div>{message}</div>}
+        <>
+            <div className="content-wrapper ">
+                <div className="content-header">
+                </div>
+                <div className="content ">
+                    <div className="container ">
+                        <div className='row '>
+                            <div className=' col-xs-12 col-sm-12 col-md-11 col-lg-11'>
+                                <div className='card card-primary'>
+                                    <div className='row  justify-content-center'>
+                                        <input type="num" value={searchId} onChange={(e) => setSearchId(e.target.value)} />
+                                        <button className='btn btn-sm bg-blue col-lg-2 offset-md-1' onClick={handleSearch}>Id de la Entrada a editar</button>
+                                    </div>
+                                    {message && <div>{message}</div>}
 
-            <div>
-                {data.IdEntrada && (
-                    <form>
-                        <label>
-                            Fecha Entrada:
-                            <input
-                                type="datetime-local"
-                                name="Fecha_entrada"
-                                value={formData.Fecha_entrada || ''}
-                                onChange={handleInputChange}
-                            />
-                        </label>
-                        <label>
-                            Fecha Salida:
-                            <input
-                                type="datetime-local"
-                                name="Fecha_salida"
-                                value={formData.Fecha_salida || ''}
-                                onChange={handleInputChange}
-                            />
-                        </label>
-                        <label>
-                            IdProducto:
-                            <input
-                                type="num"
-                                name="IdProducto"
-                                value={formData.IdProducto || ''}
-                                onChange={handleInputChange}
-                            />
-                        </label>
-                        <button onClick={handleSubmit}>Guardar Cambios</button>
+                                    <div>
+                                        {data.IdEntrada && (
+                                            <form>
+                                                <label className="col">
+                                                    Fecha Entrada:
+                                                    <input
+                                                        type="datetime-local"
+                                                        name="Fecha_entrada"
+                                                        value={formData.Fecha_entrada || ''}
+                                                        onChange={handleInputChange}
+                                                    />
+                                                </label>
+                                                <label className="col">
+                                                    Fecha Salida:
+                                                    <input
+                                                        type="datetime-local"
+                                                        name="Fecha_salida"
+                                                        value={formData.Fecha_salida || ''}
+                                                        onChange={handleInputChange}
+                                                    />
+                                                </label>
+                                                <label className="col">
+                                                    IdProducto:
+                                                    <input
+                                                        type="num"
+                                                        name="IdProducto"
+                                                        value={formData.IdProducto || ''}
+                                                        onChange={handleInputChange}
+                                                    />
+                                                </label>
+                                                <button className='btn btn-sm bg-blue col-lg-2 offset-md-1' onClick={handleSubmit}>Guardar Cambios</button>
 
-                    </form>
-                )}
+                                            </form>
+                                        )}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 export default editar_ent;

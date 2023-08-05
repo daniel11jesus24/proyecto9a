@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { Link } from 'react-router-dom';
 function Consulta_pro() {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -20,11 +20,25 @@ function Consulta_pro() {
                 setIsLoading(false);
             }
         };
-
-        
         fetchData();
     }, []);
+    //ELIMINAR
+    const handleDelete = async (IdProducto) => {
+        try {
+            const response = await fetch(`http://localhost/dwi-9a/index.php/Api/Productos/${IdProducto}`, {
+                method: 'DELETE', redirect: 'follow'
+            });
+            console.log(IdProducto);
+            if (!response.ok) {
+                throw new Error('La solicitud de eliminación no pudo ser completada.');
+            }
 
+            setData((prevData) => prevData.filter((producto) => producto.IdProducto !== IdProducto));
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+    // TERMINA ELIMINADO
     if (isLoading) {
         return <div>Cargando...</div>;
     }
@@ -32,6 +46,7 @@ function Consulta_pro() {
     if (error) {
         return <div>Error: {error}</div>;
     }
+    
     return (
         <>
             <div className="content-wrapper">
@@ -45,7 +60,7 @@ function Consulta_pro() {
                                 <div className='card card-primary'>
                                     <div className='card-header'>
                                         <h4 className='card-title'>
-                                            Consulta de Entradas/Salidas
+                                            Consulta de productos
                                         </h4>
                                     </div>
                                     <div >
@@ -62,7 +77,7 @@ function Consulta_pro() {
                                                     <th>Precio</th>
                                                     <th>Fecha_registro</th>
                                                     <th>Status</th>
-                                                    <th className="col-lg-5">Acciones</th>
+                                                    <th className="col-lg-6">Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -72,15 +87,17 @@ function Consulta_pro() {
                                                         <td>{producto.IdCategoria}</td>
                                                         <td>{producto.Marca}</td>
                                                         <td>{producto.Nombre}</td>
-                                                        <td>{producto.Foto}</td>
+                                                        <td> <img src={producto.Foto} width="50" /> </td>
                                                         <td>{producto.Piezas}</td>
                                                         <td>{producto.Color}</td>
                                                         <td>{producto.Precio}</td>
                                                         <td>{producto.Fecha_registro}</td>
                                                         <td>{producto.Status}</td>
                                                         <td >
-                                                            <button className='btn btn-sm bg-blue col-lg-4 offset-md-1'>Editar</button>
-                                                            <button className='btn btn-sm bg-danger col-lg-4 offset-md-1 '>Borrar</button>
+                                                            <Link to='/edipro'>
+                                                                <button className='btn btn-sm bg-blue col-lg-4 offset-md-1'>Editar</button>
+                                                            </Link>
+                                                            <button className='btn btn-sm bg-danger col-lg-4 offset-md-1 ' onClick={() => handleDelete(producto.IdProducto)}>Borrar</button>
                                                         </td>
                                                     </tr>
                                                 ))}
@@ -98,7 +115,7 @@ function Consulta_pro() {
                 </div>
             </div>
 
-       </>
+        </>
     );
 };
 

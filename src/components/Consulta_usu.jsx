@@ -24,6 +24,23 @@ function Consulta_usu() {
         fetchData();
     }, []);
 
+    //ELIMINAR
+    const handleDelete = async (IdUsu) => {
+        try {
+            const response = await fetch(`http://localhost/dwi-9a/index.php/Api/Usuarios/${IdUsu}`, {
+                method: 'DELETE', redirect: 'follow'
+            });
+            console.log(IdUsuarios);
+            if (!response.ok) {
+                throw new Error('La solicitud de eliminación no pudo ser completada.');
+            }
+
+            setData((prevData) => prevData.filter((usuario) => usuario.IdUsu !== IdUsuarios));
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+
     if (isLoading) {
         return <div>Cargando...</div>;
     }
@@ -34,26 +51,24 @@ function Consulta_usu() {
 
     return (
         <>
-            <div className="content-wrapper">
+            <div className="content-wrapper ">
                 <div className="content-header">
-
                 </div>
-                <div className="content">
-                    <div className="container">
-
-                        <div className='row'>
-                            <div className='col-xs-12  col-lg-12'>
+                <div className="content ">
+                    <div className="container ">
+                        <div className='row justify-content-center'>
+                            <div className=' col-xs-12 col-sm-12 col-md-11 col-lg-11'>
                                 <div className='card card-primary'>
                                     <div className='card-header'>
                                         <h4 className='card-title'>
-                                            <i className="fas mr-2"></i>
-                                            Consulta de Usuarios
+                                            Consulta de usuarios
+
                                         </h4>
                                     </div>
                                     <div >
                                         <table className='table text-center'>
                                             <thead>
-                                                <tr>
+                                                <tr >
                                                     <th >IdUsuarios</th>
                                                     <th>Nombre</th>
                                                     <th>Apellido paterno</th>
@@ -63,26 +78,26 @@ function Consulta_usu() {
                                                     <th>Password</th>
                                                     <th>Fecha</th>
                                                     <th >Email</th>
-                                                    <th className="col-lg-12">Acciones</th>
+                                                    <th className="col-lg-6">Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {data.map((item) => (
-                                                    <tr key={item.IdUsuarios}>
-                                                        <td>{item.IdUsuarios}</td>
-                                                        <td >{item.Nombre}</td>
-                                                        <td >{item.Apellido_pat}</td>
-                                                        <td >{item.Apellido_mat}</td>
-                                                        <td >{item.Puesto}</td>
-                                                        <td >{item.Foto}</td>
-                                                        <td >{item.Password}</td>
-                                                        <td >{item.Fecha_registro}</td>
-                                                        <td >{item.Email}</td>
+                                                {data.map((usuario) => (
+                                                    <tr key={usuario.IdUsuarios}>
+                                                        <td>{usuario.IdUsuarios}</td>
+                                                        <td >{usuario.Nombre}</td>
+                                                        <td >{usuario.Apellido_pat}</td>
+                                                        <td >{usuario.Apellido_mat}</td>
+                                                        <td >{usuario.Puesto}</td>
+                                                        <td> <img src={usuario.Foto} width="50" /> </td>
+                                                        <td >{usuario.Password}</td>
+                                                        <td >{usuario.Fecha_registro}</td>
+                                                        <td >{usuario.Email}</td>
                                                         <td >
                                                             <Link to='/ediusu'>
                                                                 <button className='btn btn-sm bg-blue col-lg-4 offset-md-1'>Editar</button>
                                                             </Link>
-                                                            <button className='btn btn-sm bg-danger col-lg-4 offset-md-1 '>Borrar</button>
+                                                            <button className='btn btn-sm bg-danger offset-md-1 ' onClick={() => handleDelete(usuario.IdUsuarios)}>Borrar</button>
                                                         </td>
                                                     </tr>
                                                 ))}
@@ -92,7 +107,6 @@ function Consulta_usu() {
 
                                 </div>
                             </div>
-
 
                         </div>
 
