@@ -19,7 +19,7 @@ import Registropro from './components/Addreg_pro';
 import Registrousu from './components/Addreg_usu';
 
 import Login from './components/Login';
-
+import Grafica from './components/Grafica_ent';
 
 import { BrowserRouter, Route,Routes } from 'react-router-dom';
 
@@ -28,7 +28,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path='/' element={<Addform />} />
+        <Route exact path='/' element={<Login />} />
+        <Route path='/log' element={<Login />} />
         <Route path='/bie' element={<Addform />} />
 
         <Route path='/concat' element={<Consultacat />} />
@@ -47,7 +48,8 @@ const App = () => {
         <Route path='/refpro' element={<Registropro />} />
         <Route path='/regusu' element={<Registrousu />} />
 
-        <Route path='/log' element={<Login />} />
+        <Route path='/graent' element={<Grafica />} />
+        
       </Routes>
     </BrowserRouter>
   )
