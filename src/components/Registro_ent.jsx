@@ -6,7 +6,12 @@ const Registro_ent = () => {
     const [Fecha_salida, setFecha_salida] = useState();
     const [IdProducto, setIdProducto] = useState();
     const [message, setMessage] = useState('');
+    // Obtener el objeto del usuario desde la sessionStorage
+    const storedUser = sessionStorage.getItem("user");
+    const user2 = storedUser ? JSON.parse(storedUser) : null;
 
+    //  usar la información del usuario en esta página
+    console.log(user2.puesto); // Imprime el nombre del usuario
 
     const handleAdd = () => {
         console.log(Fecha_entrada, Fecha_salida, IdProducto)

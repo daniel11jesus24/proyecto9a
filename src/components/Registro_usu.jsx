@@ -7,13 +7,23 @@ const Registro_usu = () => {
   const [Fecha_registro, setFecha_registro] = useState();
   const [Nombre, setNombre] = useState();
   const [Apellido_pat, setApellido_pat] = useState();
-  const [Apellido_mat, setApellido_mat] = useState();
-  const [Puesto, setPuesto] = useState();
+  const [Apellido_mat, setApellido_mat] = useState(); 
   const [Password, setPassword] = useState();
   const [Email, setEmail] = useState();
   const [message, setMessage] = useState('');
   const [Foto, setFoto] = useState();
+  const roles = ['Administrador', 'Gerencia', 'Jefe de Almacen', 'Operador de Almacen'];
+  const [selectedRole, setSelectedRole] = useState('');
 
+  const handleRoleChange = (event) => {
+    setSelectedRole(event.target.value);
+  };
+  // Obtener el objeto del usuario desde la sessionStorage
+  const storedUser = sessionStorage.getItem("user");
+  const user2 = storedUser ? JSON.parse(storedUser) : null;
+
+  //  usar la información del usuario en esta página
+  console.log(user2.puesto); // Imprime el nombre del usuario
   const handleAdd = () => {
     // ... Tu código para obtener los datos del formulario ...
 
@@ -21,7 +31,7 @@ const Registro_usu = () => {
     formdata.append('Nombre', Nombre);
     formdata.append('Apellido_pat', Apellido_pat);
     formdata.append('Apellido_mat', Apellido_mat);
-    formdata.append('Puesto', Puesto);
+    formdata.append('Puesto', selectedRole);
     formdata.append('Foto', Foto); // Agrega la imagen al formulario también
     formdata.append('Password', Password);
     formdata.append('Fecha_registro', Fecha_registro);
@@ -122,11 +132,15 @@ const Registro_usu = () => {
                         <h6> Puesto</h6>
                       </div>
                       <div className='col-xs-6 col-md-8 col-lg-8'>
-                        <input type='text' name=''
-                          value={Puesto}
-                          onChange={event => setPuesto(event.target.value)}
-                          className='form-control'
-                          placeholder='Introduzca...' />
+                         
+                        <select id="roles" value={selectedRole} onChange={handleRoleChange} className='form-control'>
+                          <option value="">-- Seleccione un rol --</option>
+                          {roles.map((role) => (
+                            <option key={role} value={role}>
+                              {role}
+                            </option>
+                          ))}
+                        </select> 
                       </div>
                     </div>
                     <div className='row'>
@@ -166,10 +180,10 @@ const Registro_usu = () => {
                       </div>
                     </div>
                     <div className='row '>
-                      <div className='col-xs-6 col-md-8 col-lg-4'> 
+                      <div className='col-xs-6 col-md-8 col-lg-4'>
                         <h6>Email</h6>
                       </div>
-                      <div className='col-xs-6 col-md-8 col-lg-8'> 
+                      <div className='col-xs-6 col-md-8 col-lg-8'>
                         <input type="email" name='' id=''
                           value={Email}
                           onChange={event => setEmail(event.target.value)}

@@ -4,8 +4,17 @@ function Consulta_cat() {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
+    // Obtener el objeto del usuario desde la sessionStorage
+    const storedUser = sessionStorage.getItem("user");
+    const user2 = storedUser ? JSON.parse(storedUser) : null;
+
+    //  usar la información del usuario en esta página
+    console.log(user2.puesto); // Imprime el nombre del usuario
+    //poner visible los botones de eliminar y editar solo si es administrador
+    const esAdmin = user2.puesto === 'Administrador'; // Asegúrate de que coincida con el rol "administrador"
 
     useEffect(() => {
+
         const fetchData = async () => {
             try {
                 const response = await fetch('http://localhost/dwi-9a/index.php/Api/Categorias');
@@ -58,8 +67,8 @@ function Consulta_cat() {
                 <div className="content">
                     <div className="container">
 
-                        <div className='row'>
-                            <div className='col-xs-12  col-lg-12'>
+                        <div className='row justify-content-center'>
+                            <div className='col-xs-8 col-sm-8 col-md-10 col-lg-12'>
                                 <div className='card card-primary'>
                                     <div className='card-header'>
                                         <h4 className='card-title'>
@@ -88,9 +97,9 @@ function Consulta_cat() {
                                                         <td>{categoria.Fecha_alta}</td>
                                                         <td >
                                                             <Link to='/edicat'>
-                                                                <button className='btn btn-sm bg-blue col-lg-4 offset-md-1'>Editar</button>
+                                                                {esAdmin && <button className='btn btn-sm bg-blue offset-md-1'>Editar</button>}
                                                             </Link>
-                                                            <button className='btn btn-sm bg-danger col-lg-5 offset-md-1' onClick={() => handleDelete(categoria.IdCategoria)}>Borrar</button>
+                                                            {esAdmin && <button className='btn btn-sm bg-danger  offset-md-1' onClick={() => handleDelete(categoria.IdCategoria)}>Borrar</button>}
                                                         </td>
                                                     </tr>
                                                 ))}

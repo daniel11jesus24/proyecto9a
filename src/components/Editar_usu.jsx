@@ -7,6 +7,15 @@ const Editar_usu = () => {
   const [searchId, setSearchId] = useState('');
   const [message, setMessage] = useState('');
 
+  // Obtener el objeto del usuario desde la sessionStorage
+  const storedUser = sessionStorage.getItem("user");
+  const user2 = storedUser ? JSON.parse(storedUser) : null;
+
+  //  usar la información del usuario en esta página
+  console.log(user2.puesto); // Imprime el nombre del usuario
+
+
+
   const handleSearch = async () => {
     try {
       const response = await fetch(`http://localhost/dwi-9a/index.php/Api/Usuarios/${searchId}`);
@@ -76,7 +85,7 @@ const Editar_usu = () => {
                   </div>
                   {message && <div>{message}</div>}
 
-                  <div>
+                  <div className='row  justify-content-center'>
                     {data.IdUsuarios && (
                       <form>
                         <label className="col">

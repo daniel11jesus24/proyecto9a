@@ -1,12 +1,21 @@
 import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';  
 
 
 function Consulta_ent() {
-    const [data, setData] = useState([]);
-    const [datap, setDatap] = useState([]);
+    const [data, setData] = useState([]); 
     const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(null);  
+
+    // Obtener el objeto del usuario desde la sessionStorage
+    const storedUser = sessionStorage.getItem("user");
+    const user2 = storedUser ? JSON.parse(storedUser) : null;
+
+      
+    console.log(user2.puesto ); // Imprime el nombre del usuario 
+    //poner visible los botones de eliminar y editar solo si es administrador
+    const esAdmin = user2.puesto === 'Administrador'; // Asegúrate de que coincida con el rol "administrador"
+
 
     //operaciones para consultar todo
     useEffect(() => {
@@ -52,7 +61,9 @@ function Consulta_ent() {
     if (error) {
         return <div>Error: {error}</div>;
     }
-
+    //mostrar grafica
+    
+   
 
     return (
         <>
@@ -61,25 +72,23 @@ function Consulta_ent() {
                 </div>
                 <div className="content ">
                     <div className="container ">
-                        <div className='row '>
-                            <div className=' col-xs-12 col-sm-12 col-md-11 col-lg-11'>
+                        <div className='row justify-content-center'>
+                            <div className=' col-xs-8 col-sm-8 col-md-10 col-lg-12'>
                                 <div className='card card-primary'>
                                     <div className='card-header'>
                                         <h4 className='card-title'>
                                             Consulta de Entradas/Salidas
-
                                         </h4>
                                     </div>
                                     <div >
-
                                         <table className="table text-center" >
                                             <thead>
                                                 <tr>
                                                     <th >ID Entrada</th>
                                                     <th >Fecha de Entrada</th>
                                                     <th >Fecha de Salida</th>
-                                                    <th >ID Producto</th> 
-                                                    <th className="col-5">Acciones</th>
+                                                    <th >ID Producto</th>
+                                                    <th className="col-2">Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -89,23 +98,26 @@ function Consulta_ent() {
                                                         <td >{entradas.Fecha_entrada}</td>
                                                         <td >{entradas.Fecha_salida}</td>
                                                         <td >{entradas.IdProducto}</td>
-                                                         <td >
+                                                        <td >
                                                             <Link to='/edient'>
-                                                                <button className='btn btn-sm bg-blue col-lg-4 offset-md-1'>Editar</button>
+                                                                {esAdmin && <button className='btn btn-sm bg-blue offset-md-1'>Editar</button>}
                                                             </Link>
-                                                            <button className='btn btn-sm bg-danger col-lg-5 offset-md-1' onClick={() => handleDelete(entradas.IdEntrada)}>Borrar</button>
+                                                            {esAdmin && <button className='btn btn-sm bg-danger  offset-md-1' onClick={() => handleDelete(entradas.IdEntrada)}>Borrar</button>}
                                                         </td>
                                                     </tr>
                                                 ))}
                                             </tbody>
                                         </table>
                                     </div>
-
-                                </div> 
+                                    <div className="row  justify-content-center">
+                                        <Link to='/graent'> 
+                                        <button className='btn btn-sm bg-blue offset-md-1'>Grafica</button>
+                                        </Link>
+                                    </div>
+                                     
+                                </div>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>

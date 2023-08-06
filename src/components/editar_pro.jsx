@@ -6,7 +6,12 @@ const editar_pro = () => {
     const [formData, setFormData] = useState({});
     const [searchId, setSearchId] = useState('');
     const [message, setMessage] = useState('');
+    // Obtener el objeto del usuario desde la sessionStorage
+    const storedUser = sessionStorage.getItem("user");
+    const user2 = storedUser ? JSON.parse(storedUser) : null;
 
+    //  usar la información del usuario en esta página
+    console.log(user2.puesto); // Imprime el nombre del usuario
     const handleSearch = async () => {
         try {
             const response = await fetch(`http://localhost/dwi-9a/index.php/Api/Productos/${searchId}`);
